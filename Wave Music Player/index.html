@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Retro Digital Clock Dashboard</title>
+    
+    <!-- 🌟 SECURE INDUSTRIAL WEB FONT ENGINES LINKED DIRECTLY -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ANIMATED SUN/MOON THEME CONTROLLER -->
+    <div class="switch-container">
+        <input type="checkbox" id="theme-toggle" class="toggle-checkbox">
+        <label for="theme-toggle" class="toggle-label">
+            <span class="toggle-inner-button"></span>
+        </label>
+    </div>
+
+    <!-- CORE INTERFACE CONTENT WRAPPER -->
+    <main class="dashboard-wrapper">
+        
+        <!-- LIVE SYSTEM CALENDAR CARD -->
+        <div id="date-display" class="date-card">LOADING CALENDAR...</div>
+
+        <!-- 500PX RESPONSIVE GRID HARDWARE HOUSING -->
+        <div class="time">
+            <div class="clock-card">
+                <span id="hour">00</span>
+                <span class="card-label">HOURS</span>
+            </div>
+            <div class="clock-card">
+                <span id="minute">00</span>
+                <span class="card-label">MINUTES</span>
+            </div>
+            <div class="clock-card">
+                <span id="second">00</span>
+                <span class="card-label">SECONDS</span>
+            </div>
+        </div>
+        
+    </main>
+
+    <!-- System Control Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

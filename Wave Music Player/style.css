@@ -1,0 +1,245 @@
+/* --- 💎 GLOBAL STRUCTURAL RESETS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 🌙 DEFAULT DARK MODE ENVIRONMENT */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    background: linear-gradient(-45deg, #1b0f2e, #2a1b40, #4c224f, #1b0f2e);
+    background-size: 400% 400%;
+    animation: sunsetPlasma 15s ease infinite;
+    overflow-x: hidden;
+    padding: 40px 20px;
+    transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes sunsetPlasma {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.dashboard-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1800px;
+    gap: 4vh;
+}
+
+/* --- ☀️ LIGHT MODE ACTIVATED TRIGGER --- */
+body.light-mode {
+    background: linear-gradient(-45deg, #ffe3ec, #fff0f5, #e0ebf8, #ffe3ec);
+    background-size: 400% 400%;
+    animation: sunsetPlasma 15s ease infinite;
+}
+
+/* --- 🎛️ SUN & MOON INTERACTIVE CONTROLLER --- */
+.switch-container {
+    position: absolute;
+    top: 30px;
+    z-index: 1000;
+}
+
+.toggle-checkbox {
+    display: none;
+}
+
+.toggle-label {
+    display: block;
+    width: 140px;
+    height: 60px;
+    background-color: #151324;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: inset 0 4px 10px rgba(0,0,0,0.6), 0 4px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.4s ease;
+    overflow: hidden;
+}
+
+/* Space Stars Arrays */
+.toggle-label::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: 
+        radial-gradient(circle, #fff 10%, transparent 11%),
+        radial-gradient(circle, #fff 8%, transparent 9%),
+        radial-gradient(circle, #fff 12%, transparent 13%);
+    background-size: 35px 35px, 25px 25px, 45px 45px;
+    background-position: 15px 10px, 45px 35px, 25px 42px;
+    opacity: 0.5;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.3s ease;
+}
+
+/* Puffy Clouds Arrays */
+.toggle-label::after {
+    content: '';
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    bottom: -16px;
+    left: -40px;
+    box-shadow: 18px -6px 0 2px #ffffff, 36px -2px 0 0px #ffffff, 52px -8px 0 3px #ffffff, 72px -4px 0 1px #ffffff;
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.4s ease;
+}
+
+/* Knob Transition Config */
+.toggle-inner-button {
+    display: block;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    position: absolute;
+    top: 7px;
+    left: 87px;
+    background-color: #ffffff;
+    box-shadow: inset -12px -2px 0px 2px #151324;
+    z-index: 2;
+    transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.toggle-checkbox:checked + .toggle-label { background-color: #aed8f2; }
+.toggle-checkbox:checked + .toggle-label::before { transform: translateY(-40px); opacity: 0; }
+.toggle-checkbox:checked + .toggle-label::after { transform: translateX(45px); opacity: 1; }
+.toggle-checkbox:checked + .toggle-label .toggle-inner-button {
+    left: 7px;
+    background-color: #ffb347;
+    box-shadow: 0 0 20px #ffb347, inset 0 0 0px 0px rgba(0,0,0,0);
+}
+
+/* --- 📅 LIVE CALENDAR CARD DESIGN --- */
+.date-card {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #ff9eb9;
+    background-color: rgba(61, 44, 90, 0.4);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 158, 185, 0.15);
+    padding: 15px 45px;
+    border-radius: 50px;
+    text-shadow: 0 0 15px rgba(255, 158, 185, 0.5);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.date-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(61, 44, 90, 0.6);
+    box-shadow: 0 20px 45px rgba(255, 158, 185, 0.25);
+}
+
+body.light-mode .date-card {
+    color: #3d2c5a;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(61, 44, 90, 0.1);
+    text-shadow: none;
+    box-shadow: 0 15px 35px rgba(61, 44, 90, 0.05);
+}
+
+/* --- ⏱️ MASSIVE 500PX GRID HARDWARE HOUSING --- */
+.time {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(20px, 3vw, 50px);
+    width: 100%;
+}
+
+/* THE 500PX GLASSMORPHISM CARDS */
+.time .clock-card {
+    position: relative;
+    width: clamp(280px, 25vw, 500px); /* Extends fully up to your requested 500px layout width */
+    height: clamp(280px, 25vw, 500px);
+    background-color: rgba(61, 44, 90, 0.45);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 158, 185, 0.15);
+    border-radius: clamp(24px, 3vw, 45px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+    transform: translateY(0);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* 🌟 DYNAMIC WATERPROOF RE-STYLED DIGITAL CHARACTERS */
+.time .clock-card span:first-child {
+    font-family: 'Share Tech Mono', monospace; /* Bulletproof Google web-safe digital terminal typeface */
+    font-size: clamp(5.5rem, 10vw, 12.5rem); 
+    color: #ff9eb9;
+    text-shadow: 0 0 35px rgba(255, 158, 185, 0.75);
+    transition: color 0.4s ease, text-shadow 0.4s ease;
+}
+
+.card-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(0.8rem, 1.2vw, 1.3rem);
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: rgba(255, 158, 185, 0.5);
+    margin-top: 5px;
+}
+
+/* --- 🚀 ACTIVE 3D HOVER MECHANICAL EFFECTS --- */
+.time .clock-card:hover {
+    transform: translateY(-15px);
+    background-color: rgba(74, 53, 110, 0.6);
+    border-color: rgba(255, 158, 185, 0.4);
+    box-shadow: 0 45px 90px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 158, 185, 0.25);
+}
+
+.time .clock-card:hover span:first-child {
+    color: #ffb3c6;
+    text-shadow: 0 0 50px rgba(255, 158, 185, 0.95);
+}
+
+/* Light Mode Overrides */
+body.light-mode .time .clock-card {
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(61, 44, 90, 0.08);
+    box-shadow: 0 30px 60px rgba(61, 44, 90, 0.06);
+}
+
+body.light-mode .time .clock-card span:first-child {
+    color: #3d2c5a;
+    text-shadow: none;
+}
+
+body.light-mode .time .clock-card .card-label {
+    color: rgba(61, 44, 90, 0.4);
+}
+
+body.light-mode .time .clock-card:hover {
+    background-color: #ffffff;
+    border-color: rgba(61, 44, 90, 0.2);
+    box-shadow: 0 45px 90px rgba(61, 44, 90, 0.15);
+}
+
+body.light-mode .time .clock-card:hover span:first-child {
+    color: #ff6b8b;
+}
